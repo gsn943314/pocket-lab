@@ -1,0 +1,13 @@
+Pocket Lab
+Copyright (c) 2026 David Kuo
+
+The documentation and original scripts in this repository are licensed under
+the MIT License.
+
+Release archives include modified builds derived from OpenAI Codex:
+https://github.com/openai/codex
+
+OpenAI Codex is licensed under the Apache License, Version 2.0. Its upstream
+copyright notices and license continue to apply. Pocket Lab is an independent
+community project and is not an official OpenAI distribution.
+

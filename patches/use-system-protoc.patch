@@ -1,0 +1,14 @@
+diff --git a/codex-rs/code-mode-protocol/build.rs b/codex-rs/code-mode-protocol/build.rs
+index d8d8bbff32..0714ee8850 100644
+--- a/codex-rs/code-mode-protocol/build.rs
++++ b/codex-rs/code-mode-protocol/build.rs
+@@ -5,7 +5,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
+     println!("cargo:rerun-if-changed=src/grpc");
+ 
+     let mut config = tonic_prost_build::Config::new();
+-    config.protoc_executable(protoc_bin_vendored::protoc_bin_path()?);
++    config.protoc_executable(PathBuf::from("protoc"));
+     let proto_files = glob::glob("src/grpc/*.proto")?.collect::<Result<Vec<_>, _>>()?;
+ 
+     tonic_prost_build::configure()
+

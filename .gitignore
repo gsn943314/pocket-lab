@@ -1,0 +1,6 @@
+release/
+*.tar.zst
+*.log
+.env
+.DS_Store
+
