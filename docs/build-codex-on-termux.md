@@ -12,30 +12,32 @@ The upstream source-build documentation currently lists desktop operating system
 
 ## Steps
 
-Install dependencies:
+Clone this repo and the upstream Codex source next to each other, and pin Codex to the tested commit:
 
 ```sh
-./scripts/bootstrap-termux.sh
+mkdir -p "$HOME/src" && cd "$HOME/src"
+git clone https://github.com/gsn943314/pocket-lab.git
+git clone https://github.com/openai/codex.git
+cd codex
+git checkout 3921a30d6b
 ```
 
-Clone and pin upstream:
+Install the build dependencies:
 
 ```sh
-git clone https://github.com/openai/codex.git "$HOME/src/codex"
-cd "$HOME/src/codex"
-git checkout 3921a30d6b
+../pocket-lab/scripts/bootstrap-termux.sh
 ```
 
 Apply the Android `protoc` patch:
 
 ```sh
-git apply /path/to/pocket-lab/patches/use-system-protoc.patch
+git apply ../pocket-lab/patches/use-system-protoc.patch
 ```
 
-Build:
+Build. On the tested phone this took about 203 minutes, so keep Termux awake with `termux-wake-lock` and keep the phone charging:
 
 ```sh
-/path/to/pocket-lab/scripts/build-codex.sh
+../pocket-lab/scripts/build-codex.sh
 ```
 
 Install the result:
@@ -43,6 +45,8 @@ Install the result:
 ```sh
 install -m 700 codex-rs/target/release/codex "$PREFIX/bin/codex"
 ```
+
+This builds `codex` only. For `codex-code-mode-host`, use the binary from the release (see [Code Mode host](#code-mode-host) below).
 
 ## Why the patch is needed
 
